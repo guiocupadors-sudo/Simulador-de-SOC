@@ -1,0 +1,3269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CyberLab Arena</title>
+
+<style>
+
+/* =========================================================
+   CYBERLAB ARENA
+   HTML + CSS + JAVASCRIPT
+   Tudo em um único arquivo
+========================================================= */
+
+:root {
+
+    --bg: #05080d;
+    --panel: #0b121b;
+    --panel2: #0f1924;
+    --border: #1b2b3c;
+
+    --text: #eaf5ff;
+    --muted: #7f92a8;
+
+    --cyan: #35e5ff;
+    --green: #58ffa0;
+    --red: #ff5575;
+    --yellow: #ffc45c;
+    --purple: #a88bff;
+
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+
+    background:
+        radial-gradient(
+            circle at 75% 0%,
+            #12304a 0%,
+            #05080d 42%
+        );
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+
+    min-height: 100vh;
+
+}
+
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.app {
+
+    display: flex;
+
+    min-height: 100vh;
+
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+    width: 250px;
+
+    height: 100vh;
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    background:
+        rgba(5, 9, 15, .96);
+
+    border-right:
+        1px solid var(--border);
+
+    padding: 20px 14px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    z-index: 100;
+
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 5px 8px 25px;
+
+}
+
+
+.logo-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border:
+        1px solid #286078;
+
+    border-radius: 10px;
+
+    display: grid;
+
+    place-items: center;
+
+    color: var(--cyan);
+
+    font-size: 26px;
+
+    box-shadow:
+        0 0 20px rgba(53,229,255,.08);
+
+}
+
+
+.logo strong {
+
+    display: block;
+
+    font-size: 15px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.logo span {
+
+    display: block;
+
+    color: var(--cyan);
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+}
+
+
+.profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 11px;
+
+    background: var(--panel);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 10px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.avatar {
+
+    width: 37px;
+    height: 37px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #17334a;
+
+    color: var(--cyan);
+
+    font-weight: bold;
+
+}
+
+
+.profile small {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 3px;
+
+}
+
+
+nav {
+
+    display: grid;
+
+    gap: 5px;
+
+}
+
+
+.nav-btn {
+
+    width: 100%;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #8092a8;
+
+    padding: 11px;
+
+    border-radius: 8px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+
+.nav-btn:hover {
+
+    background: #10202e;
+
+    color: white;
+
+}
+
+
+.nav-btn.active {
+
+    background: #102637;
+
+    color: var(--cyan);
+
+    box-shadow:
+        inset 2px 0 var(--cyan);
+
+}
+
+
+.sidebar-footer {
+
+    margin-top: auto;
+
+    color: #53677d;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.sidebar-footer span {
+
+    display: block;
+
+    color: #304457;
+
+    margin-top: 5px;
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+
+    margin-left: 250px;
+
+    width:
+        calc(100% - 250px);
+
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+
+    height: 65px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 50;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 0 28px;
+
+    background:
+        rgba(5,8,13,.92);
+
+    backdrop-filter:
+        blur(10px);
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+
+.online {
+
+    font-size: 10px;
+
+    color: var(--green);
+
+}
+
+
+.online::before {
+
+    content: "●";
+
+    margin-right: 6px;
+
+}
+
+
+.search {
+
+    width: 400px;
+
+    margin: auto;
+
+    padding: 10px 13px;
+
+    border:
+        1px solid var(--border);
+
+    background: #09111a;
+
+    border-radius: 8px;
+
+    color: white;
+
+    outline: none;
+
+}
+
+
+.search:focus {
+
+    border-color:
+        var(--cyan);
+
+}
+
+
+.api {
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+#content {
+
+    max-width: 1450px;
+
+    margin: auto;
+
+    padding: 32px;
+
+}
+
+
+.eyebrow {
+
+    color: var(--cyan);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 7px;
+
+}
+
+
+h1 {
+
+    font-size: 38px;
+
+    line-height: 1.05;
+
+    margin-bottom: 10px;
+
+}
+
+
+h2 {
+
+    margin-bottom: 8px;
+
+}
+
+
+h3 {
+
+    margin-bottom: 8px;
+
+}
+
+
+.subtitle {
+
+    color: var(--muted);
+
+    max-width: 750px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+
+    gap: 30px;
+
+    margin-bottom: 28px;
+
+}
+
+
+.hero-badge {
+
+    display: inline-block;
+
+    padding: 5px 8px;
+
+    border:
+        1px solid #24566d;
+
+    color: var(--cyan);
+
+    border-radius: 5px;
+
+    font-size: 9px;
+
+    margin-top: 15px;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn {
+
+    border:
+        1px solid #286079;
+
+    background: #0c2736;
+
+    color: var(--cyan);
+
+    padding: 10px 15px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+
+.btn:hover {
+
+    background: #12394d;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.btn.green {
+
+    color: var(--green);
+
+    border-color:
+        #286346;
+
+}
+
+
+.btn.red {
+
+    color: var(--red);
+
+    border-color:
+        #653044;
+
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+}
+
+
+.card {
+
+    background:
+        linear-gradient(
+            180deg,
+            #0d1722,
+            #091119
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 11px;
+
+    padding: 18px;
+
+}
+
+
+.module {
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+
+.module:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        #2b566f;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.2);
+
+}
+
+
+.module-icon {
+
+    font-size: 27px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.tag {
+
+    display: inline-block;
+
+    font-size: 9px;
+
+    color: var(--cyan);
+
+    border:
+        1px solid #24546b;
+
+    border-radius: 5px;
+
+    padding: 4px 7px;
+
+}
+
+
+.muted {
+
+    color: var(--muted);
+
+    line-height: 1.5;
+
+}
+
+
+.dashboard-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 15px;
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress {
+
+    height: 7px;
+
+    background: #172536;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin:
+        15px 0 8px;
+
+}
+
+
+.progress div {
+
+    height: 100%;
+
+    background: var(--cyan);
+
+    transition: .5s;
+
+}
+
+
+/* =========================================================
+   LAB
+========================================================= */
+
+.steps {
+
+    display: flex;
+
+    gap: 7px;
+
+    margin:
+        20px 0;
+
+}
+
+
+.step {
+
+    padding: 8px 10px;
+
+    border:
+        1px solid var(--border);
+
+    color: var(--muted);
+
+    border-radius: 7px;
+
+    font-size: 10px;
+
+}
+
+
+.step.active {
+
+    color: var(--cyan);
+
+    border-color:
+        var(--cyan);
+
+}
+
+
+.lab {
+
+    display: grid;
+
+    gap: 15px;
+
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table {
+
+    width: 100%;
+
+    border-collapse:
+        collapse;
+
+    font-size: 12px;
+
+}
+
+
+.table th,
+.table td {
+
+    padding: 11px;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+
+.table th {
+
+    color: #74899f;
+
+    font-weight: 500;
+
+}
+
+
+.high {
+
+    color: var(--red);
+
+}
+
+
+.medium {
+
+    color: var(--yellow);
+
+}
+
+
+.low {
+
+    color: var(--green);
+
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.input {
+
+    width: 100%;
+
+    padding: 11px;
+
+    border:
+        1px solid #1c3042;
+
+    border-radius: 7px;
+
+    background: #04080c;
+
+    color: white;
+
+    outline: none;
+
+}
+
+
+.input:focus {
+
+    border-color:
+        var(--cyan);
+
+}
+
+
+/* =========================================================
+   LESSON
+========================================================= */
+
+.lesson {
+
+    padding: 14px;
+
+    border-left:
+        2px solid var(--purple);
+
+    background:
+        #0b1420;
+
+    border-radius: 5px;
+
+}
+
+
+.lesson b {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+}
+
+
+.lesson span {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================================
+   CODE
+========================================================= */
+
+.code {
+
+    padding: 15px;
+
+    background: #03070b;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 8px;
+
+    white-space: pre-wrap;
+
+    font-family:
+        Consolas,
+        monospace;
+
+    font-size: 12px;
+
+    color: #c8d7e6;
+
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+.result {
+
+    padding: 13px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: #07111a;
+
+    font-family: monospace;
+
+    font-size: 11px;
+
+    white-space: pre-wrap;
+
+}
+
+
+.success {
+
+    color: var(--green);
+
+}
+
+
+.error {
+
+    color: var(--red);
+
+}
+
+
+/* =========================================================
+   TERMINAL
+========================================================= */
+
+.terminal {
+
+    height: 350px;
+
+    background: #020508;
+
+    border:
+        1px solid #1a2b3b;
+
+    border-radius: 9px;
+
+    padding: 15px;
+
+    overflow-y: auto;
+
+    font-family:
+        Consolas,
+        monospace;
+
+    font-size: 12px;
+
+    white-space: pre-wrap;
+
+    line-height: 1.6;
+
+}
+
+
+.prompt {
+
+    color: var(--green);
+
+}
+
+
+.terminal-row {
+
+    display: flex;
+
+    gap: 8px;
+
+}
+
+
+/* =========================================================
+   SQL EDITOR
+========================================================= */
+
+.sql-editor {
+
+    width: 100%;
+
+    min-height: 170px;
+
+    padding: 15px;
+
+    resize: vertical;
+
+    background: #03070b;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 8px;
+
+    color: var(--green);
+
+    font-family:
+        Consolas,
+        monospace;
+
+    outline: none;
+
+}
+
+
+/* =========================================================
+   ALERT
+========================================================= */
+
+.alert {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px;
+
+    border:
+        1px solid #5d2838;
+
+    background: #1b0b12;
+
+    border-radius: 8px;
+
+}
+
+
+.alert-icon {
+
+    color: var(--red);
+
+    font-size: 20px;
+
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 12px;
+
+}
+
+
+.stat {
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    color: white;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width: 1000px) {
+
+    .sidebar {
+
+        width: 70px;
+
+    }
+
+
+    .logo strong,
+    .logo span,
+    .profile div:last-child {
+
+        display: none;
+
+    }
+
+
+    .profile {
+
+        justify-content: center;
+
+    }
+
+
+    .nav-btn {
+
+        font-size: 0;
+
+        text-align: center;
+
+    }
+
+
+    .nav-btn::first-letter {
+
+        font-size: 19px;
+
+    }
+
+
+    main {
+
+        margin-left: 70px;
+
+        width:
+            calc(100% - 70px);
+
+    }
+
+
+    .grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width: 650px) {
+
+    #content {
+
+        padding: 18px;
+
+    }
+
+
+    .grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .dashboard-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .hero {
+
+        display: block;
+
+    }
+
+
+    .hero .btn {
+
+        margin-top: 15px;
+
+    }
+
+
+    .search {
+
+        width: 160px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+<div class="logo-icon">
+⌁
+</div>
+
+<div>
+
+<strong>
+CYBERLAB
+</strong>
+
+<span>
+ARENA
+</span>
+
+</div>
+
+</div>
+
+
+
+<div class="profile">
+
+<div class="avatar">
+V
+</div>
+
+<div>
+
+<strong>
+Operador
+</strong>
+
+<small id="xp">
+0 XP
+</small>
+
+</div>
+
+</div>
+
+
+
+<nav>
+
+
+<button
+class="nav-btn active"
+data-page="dashboard">
+
+⌂ Dashboard
+
+</button>
+
+
+<button
+class="nav-btn"
+data-page="soc">
+
+◈ SOC / SIEM
+
+</button>
+
+
+<button
+class="nav-btn"
+data-page="splunk">
+
+◉ Splunk
+
+</button>
+
+
+<button
+class="nav-btn"
+data-page="wazuh">
+
+◌ Wazuh
+
+</button>
+
+
+<button
+class="nav-btn"
+data-page="wireshark">
+
+⌁ Wireshark
+
+</button>
+
+
+<button
+class="nav-btn"
+data-page="linux">
+
+$_ Linux
+
+</button>
+
+
+<button
+class="nav-btn"
+data-page="sql">
+
+▦ SQL
+
+</button>
+
+
+<button
+class="nav-btn"
+data-page="devops">
+
+⚙ DevOps
+
+</button>
+
+
+</nav>
+
+
+
+<div class="sidebar-footer">
+
+CYBERLAB TRAINING OS
+
+<span>
+Ambiente educacional
+</span>
+
+</div>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<header class="topbar">
+
+
+<div class="online">
+LAB ONLINE
+</div>
+
+
+<input
+class="search"
+id="search"
+placeholder="Buscar laboratório..."
+>
+
+
+<div
+class="api"
+id="api">
+
+LOCAL MODE
+
+</div>
+
+
+</header>
+
+
+
+<section id="content"></section>
+
+
+</main>
+
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   CYBERLAB ENGINE
+========================================================= */
+
+
+/* =========================================================
+   XP
+========================================================= */
+
+let XP =
+    Number(
+        localStorage.getItem(
+            "cyberlab_xp"
+        ) || 0
+    );
+
+
+function updateXP() {
+
+    document.getElementById(
+        "xp"
+    ).textContent =
+        XP + " XP";
+
+}
+
+
+updateXP();
+
+
+
+function addXP(amount) {
+
+    XP += amount;
+
+    localStorage.setItem(
+        "cyberlab_xp",
+        XP
+    );
+
+    updateXP();
+
+}
+
+
+/* =========================================================
+   ELEMENTO PRINCIPAL
+========================================================= */
+
+const content =
+    document.getElementById(
+        "content"
+    );
+
+
+
+/* =========================================================
+   COMPONENTE CARD
+========================================================= */
+
+function moduleCard(
+    icon,
+    title,
+    description,
+    labs,
+    page
+) {
+
+return `
+
+<div
+class="card module"
+onclick="openPage('${page}')"
+>
+
+<div class="module-icon">
+${icon}
+</div>
+
+<span class="tag">
+${labs}
+</span>
+
+<h3>
+${title}
+</h3>
+
+<p class="muted">
+${description}
+</p>
+
+</div>
+
+`;
+
+}
+
+
+
+/* =========================================================
+   TEMPLATE LAB
+========================================================= */
+
+function labTemplate(
+    title,
+    description,
+    html
+) {
+
+return `
+
+<div class="eyebrow">
+CYBERLAB // LABORATORY
+</div>
+
+<h1>
+${title}
+</h1>
+
+<p class="subtitle">
+${description}
+</p>
+
+
+<div class="steps">
+
+<div class="step active">
+01 Conceito
+</div>
+
+<div class="step">
+02 Investigação
+</div>
+
+<div class="step">
+03 Desafio
+</div>
+
+<div class="step">
+04 XP
+</div>
+
+</div>
+
+
+<div class="lab">
+
+${html}
+
+</div>
+
+`;
+
+}
+
+
+
+/* =========================================================
+   PÁGINAS
+========================================================= */
+
+const pages = {
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+dashboard() {
+
+return `
+
+<div class="hero">
+
+<div>
+
+<div class="eyebrow">
+CYBERLAB // LEARNING OS
+</div>
+
+
+<h1>
+Aprenda fazendo.<br>
+Investigue de verdade.
+</h1>
+
+
+<p class="subtitle">
+
+Uma arena prática para aprender
+Cybersecurity, Linux, SQL e DevOps
+através de laboratórios interativos,
+desafios e missões.
+
+</p>
+
+
+<span class="hero-badge">
+SYSTEM READY
+</span>
+
+</div>
+
+
+<button
+class="btn"
+onclick="openPage('soc')">
+
+CONTINUAR MISSÃO →
+
+</button>
+
+</div>
+
+
+
+<div class="grid">
+
+
+${moduleCard(
+"◈",
+"SOC / SIEM",
+"Investigue alertas e incidentes.",
+"12 LABS",
+"soc"
+)}
+
+
+${moduleCard(
+"◉",
+"Splunk",
+"Pesquise e correlacione logs.",
+"8 LABS",
+"splunk"
+)}
+
+
+${moduleCard(
+"◌",
+"Wazuh",
+"Analise alertas de endpoint.",
+"7 LABS",
+"wazuh"
+)}
+
+
+${moduleCard(
+"⌁",
+"Wireshark",
+"Analise pacotes de rede.",
+"9 LABS",
+"wireshark"
+)}
+
+
+${moduleCard(
+"$_",
+"Linux",
+"Domine o terminal Linux.",
+"20 LABS",
+"linux"
+)}
+
+
+${moduleCard(
+"▦",
+"SQL Academy",
+"Aprenda SQL resolvendo desafios.",
+"18 LABS",
+"sql"
+)}
+
+
+${moduleCard(
+"⚙",
+"DevOps",
+"Git, Docker e CI/CD.",
+"14 LABS",
+"devops"
+)}
+
+
+${moduleCard(
+"✦",
+"Blue Team",
+"Trilha para SOC Analyst.",
+"6 ETAPAS",
+"soc"
+)}
+
+</div>
+
+
+
+<div class="dashboard-grid">
+
+
+<div class="card">
+
+<h3>
+Seu progresso
+</h3>
+
+<p class="muted">
+Cybersecurity Fundamentals
+</p>
+
+
+<div class="progress">
+
+<div
+style="
+width:${Math.min(XP / 10,100)}%;
+">
+</div>
+
+</div>
+
+
+<p class="muted">
+
+${XP} XP conquistados
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+Arquitetura
+</h3>
+
+<p class="muted">
+
+Frontend interativo
+
+<br><br>
+
+Sistema de XP
+
+<br><br>
+
+Labs simulados
+
+<br><br>
+
+Modo local
+
+</p>
+
+</div>
+
+
+</div>
+
+`;
+
+},
+
+
+
+/* =====================================================
+   SOC
+===================================================== */
+
+soc() {
+
+return labTemplate(
+
+"SOC / SIEM",
+
+"Investigue uma possível intrusão no servidor WEB-01.",
+
+`
+
+<div class="alert">
+
+<div class="alert-icon">
+⚠
+</div>
+
+<div>
+
+<strong>
+CRITICAL SECURITY ALERT
+</strong>
+
+<p class="muted">
+
+Multiple authentication failures
+followed by successful administrative login.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<table class="table">
+
+<tr>
+
+<th>Hora</th>
+<th>Host</th>
+<th>Evento</th>
+<th>IP</th>
+<th>Risco</th>
+
+</tr>
+
+
+<tr>
+
+<td>
+21:02:14
+</td>
+
+<td>
+WEB-01
+</td>
+
+<td>
+Failed Login ×19
+</td>
+
+<td>
+185.22.14.9
+</td>
+
+<td class="high">
+HIGH
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+21:03:01
+</td>
+
+<td>
+WEB-01
+</td>
+
+<td>
+Successful Login
+</td>
+
+<td>
+185.22.14.9
+</td>
+
+<td class="high">
+CRITICAL
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+21:03:08
+</td>
+
+<td>
+WEB-01
+</td>
+
+<td>
+Admin Session
+</td>
+
+<td>
+185.22.14.9
+</td>
+
+<td class="high">
+CRITICAL
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+
+<div class="lesson">
+
+<b>
+MISSÃO 01
+</b>
+
+<span>
+
+Analise os eventos e identifique
+o endereço IP responsável pela
+atividade suspeita.
+
+</span>
+
+</div>
+
+
+
+<input
+class="input"
+id="socAnswer"
+placeholder="Digite o IP suspeito..."
+>
+
+
+<button
+class="btn"
+onclick="
+validate(
+'socAnswer',
+'185.22.14.9',
+'socResult',
+120
+)
+">
+
+VALIDAR RESPOSTA
+
+</button>
+
+
+<div id="socResult"></div>
+
+`
+
+);
+
+},
+
+
+
+/* =====================================================
+   SPLUNK
+===================================================== */
+
+splunk() {
+
+return labTemplate(
+
+"Splunk Investigation",
+
+"Aprenda a pesquisar logs usando uma linguagem semelhante ao SPL.",
+
+`
+
+<div class="lesson">
+
+<b>
+OBJETIVO
+</b>
+
+<span>
+
+Encontrar qual endereço IP
+gerou o maior número de eventos
+de autenticação.
+
+</span>
+
+</div>
+
+
+<div class="code">
+
+index=security
+sourcetype=auth
+
+| stats count by src_ip
+
+| sort - count
+
+</div>
+
+
+
+<table class="table">
+
+<tr>
+
+<th>src_ip</th>
+<th>count</th>
+
+</tr>
+
+
+<tr>
+
+<td>
+10.0.0.8
+</td>
+
+<td>
+4
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+185.22.14.9
+</td>
+
+<td>
+31
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+172.16.4.20
+</td>
+
+<td>
+2
+</td>
+
+</tr>
+
+</table>
+
+
+
+<input
+class="input"
+id="splunkAnswer"
+placeholder="IP com maior quantidade de eventos..."
+>
+
+
+<button
+class="btn"
+onclick="
+validate(
+'splunkAnswer',
+'185.22.14.9',
+'splunkResult',
+100
+)
+">
+
+EXECUTAR INVESTIGAÇÃO
+
+</button>
+
+
+<div id="splunkResult"></div>
+
+`
+
+);
+
+},
+
+
+
+/* =====================================================
+   WAZUH
+===================================================== */
+
+wazuh() {
+
+return labTemplate(
+
+"Wazuh Lab",
+
+"Aprenda a analisar alertas de endpoint.",
+
+`
+
+<div class="card">
+
+<h3>
+ALERT #00482
+</h3>
+
+<p class="muted">
+
+Rule ID: 5712
+
+<br>
+
+Authentication Failed
+
+<br>
+
+Severity Level: 10
+
+</p>
+
+
+<table class="table">
+
+<tr>
+
+<td>
+Agent
+</td>
+
+<td>
+ubuntu-web-01
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Source IP
+</td>
+
+<td>
+185.22.14.9
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Attempts
+</td>
+
+<td>
+19 / 60s
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+
+<div class="lesson">
+
+<b>
+ANÁLISE
+</b>
+
+<span>
+
+Um único login pode ser normal.
+Dezenas de falhas seguidas por
+sucesso administrativo são muito
+mais relevantes.
+
+</span>
+
+</div>
+
+
+
+<select
+class="input"
+id="wazuhAnswer"
+>
+
+<option>
+Selecione a resposta
+</option>
+
+<option>
+Um login normal
+</option>
+
+<option>
+19 falhas + sucesso + sessão admin
+</option>
+
+<option>
+Ping ICMP
+</option>
+
+</select>
+
+
+<button
+class="btn"
+onclick="
+validate(
+'wazuhAnswer',
+'19 falhas + sucesso + sessão admin',
+'wazuhResult',
+110
+)
+">
+
+VALIDAR
+
+</button>
+
+
+<div id="wazuhResult"></div>
+
+`
+
+);
+
+},
+
+
+
+/* =====================================================
+   WIRESHARK
+===================================================== */
+
+wireshark() {
+
+return labTemplate(
+
+"Wireshark Lab",
+
+"Identifique tráfego suspeito relacionado à porta SSH.",
+
+`
+
+<div class="card">
+
+<div class="code">
+
+PACKET 01
+
+10.0.0.8 → 10.0.0.1
+
+TCP SYN
+
+PORT 443
+
+
+
+PACKET 02
+
+10.0.0.8 → 10.0.0.1
+
+TCP ACK
+
+PORT 443
+
+
+
+PACKET 03
+
+185.22.14.9 → 10.0.0.8
+
+TCP SYN
+
+PORT 22
+
+
+
+PACKET 04
+
+185.22.14.9 → 10.0.0.8
+
+TCP SYN
+
+PORT 22
+
+
+
+PACKET 05
+
+185.22.14.9 → 10.0.0.8
+
+TCP SYN
+
+PORT 22
+
+</div>
+
+</div>
+
+
+
+<div class="lesson">
+
+<b>
+DICA
+</b>
+
+<span>
+
+Para filtrar tráfego da porta SSH,
+use:
+
+<br><br>
+
+tcp.port == 22
+
+</span>
+
+</div>
+
+
+
+<input
+class="input"
+id="wireAnswer"
+value="tcp.port == 22"
+>
+
+
+<button
+class="btn"
+onclick="
+validate(
+'wireAnswer',
+'tcp.port == 22',
+'wireResult',
+130
+)
+">
+
+APLICAR FILTRO
+
+</button>
+
+
+<div id="wireResult"></div>
+
+`
+
+);
+
+},
+
+
+
+/* =====================================================
+   LINUX
+===================================================== */
+
+linux() {
+
+return labTemplate(
+
+"Linux Terminal",
+
+"Aprenda comandos Linux através de um terminal interativo.",
+
+`
+
+<div
+class="terminal"
+id="terminal"
+>
+
+CyberLab Linux Sandbox v1.0
+
+Sistema inicializado.
+
+Digite "help" para ver os comandos.
+
+<span class="prompt">
+operator@cyberlab:~$
+</span>
+
+</div>
+
+
+
+<div class="terminal-row">
+
+<input
+class="input"
+id="command"
+placeholder="Digite um comando..."
+onkeydown="
+if(event.key==='Enter')
+runCommand()
+"
+>
+
+
+<button
+class="btn"
+onclick="runCommand()"
+>
+
+EXECUTAR
+
+</button>
+
+</div>
+
+
+
+<div class="lesson">
+
+<b>
+COMANDOS DISPONÍVEIS
+</b>
+
+<span>
+
+pwd → mostra o diretório atual
+
+<br>
+
+ls → lista arquivos
+
+<br>
+
+ls -la → lista arquivos detalhadamente
+
+<br>
+
+whoami → mostra o usuário
+
+<br>
+
+ip → informações de rede
+
+<br>
+
+ps → processos
+
+<br>
+
+cat notes.txt → lê arquivo
+
+<br>
+
+clear → limpa terminal
+
+</span>
+
+</div>
+
+`
+
+);
+
+},
+
+
+
+/* =====================================================
+   SQL
+===================================================== */
+
+sql() {
+
+return labTemplate(
+
+"SQL Academy",
+
+"Aprenda SQL investigando uma pequena base de eventos.",
+
+`
+
+<div class="card">
+
+<h3>
+security_events
+</h3>
+
+
+<table class="table">
+
+<tr>
+
+<th>ID</th>
+<th>User</th>
+<th>Event</th>
+<th>Severity</th>
+
+</tr>
+
+
+<tr>
+
+<td>
+1
+</td>
+
+<td>
+ana
+</td>
+
+<td>
+login_failed
+</td>
+
+<td>
+3
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+2
+</td>
+
+<td>
+root
+</td>
+
+<td>
+login_success
+</td>
+
+<td>
+8
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+3
+</td>
+
+<td>
+bob
+</td>
+
+<td>
+port_scan
+</td>
+
+<td>
+7
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+
+<div class="lesson">
+
+<b>
+DESAFIO SQL 01
+</b>
+
+<span>
+
+Mostre apenas os eventos
+cuja severidade seja maior ou
+igual a 7.
+
+</span>
+
+</div>
+
+
+
+<textarea
+class="sql-editor"
+id="sqlQuery"
+placeholder="SELECT ..."
+></textarea>
+
+
+
+<button
+class="btn"
+onclick="executeSQL()"
+>
+
+EXECUTAR QUERY
+
+</button>
+
+
+<div id="sqlResult"></div>
+
+`
+
+);
+
+},
+
+
+
+/* =====================================================
+   DEVOPS
+===================================================== */
+
+devops() {
+
+return labTemplate(
+
+"DevOps Labs",
+
+"Aprenda o fluxo de desenvolvimento moderno.",
+
+`
+
+<div class="grid">
+
+
+${moduleCard(
+"⑂",
+"Git",
+"Branches, commits, merge e rollback.",
+"LAB 01",
+"devops"
+)}
+
+
+${moduleCard(
+"▣",
+"Docker",
+"Containers, imagens e volumes.",
+"LAB 02",
+"devops"
+)}
+
+
+${moduleCard(
+"↯",
+"CI/CD",
+"Automatize testes e deploy.",
+"LAB 03",
+"devops"
+)}
+
+
+${moduleCard(
+"⌁",
+"Observability",
+"Logs, métricas e alertas.",
+"LAB 04",
+"devops"
+)}
+
+
+</div>
+
+
+
+<div class="lesson">
+
+<b>
+PIPELINE
+</b>
+
+<span>
+
+Código
+
+→
+
+Teste
+
+→
+
+Build
+
+→
+
+Security Scan
+
+→
+
+Deploy
+
+</span>
+
+</div>
+
+
+
+<div class="code">
+
+# Git
+
+git checkout -b feature/login
+
+git add .
+
+git commit -m "feat: add login"
+
+
+
+# Docker
+
+docker build -t cyberlab/app:1.0 .
+
+docker run -p 8080:8080 cyberlab/app:1.0
+
+
+
+# CI/CD
+
+git push origin feature/login
+
+</div>
+
+`
+
+)
+
+}
+
+};
+
+
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
+
+function openPage(page) {
+
+    if (!pages[page]) {
+
+        return;
+
+    }
+
+
+    content.innerHTML =
+        pages[page]();
+
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(button => {
+
+            button.classList.toggle(
+
+                "active",
+
+                button.dataset.page === page
+
+            );
+
+        });
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
+}
+
+
+
+/* =========================================================
+   VALIDAÇÃO
+========================================================= */
+
+function validate(
+    inputId,
+    expected,
+    resultId,
+    reward
+) {
+
+    const input =
+        document.getElementById(
+            inputId
+        );
+
+
+    const answer =
+        input.value.trim();
+
+
+    const result =
+        document.getElementById(
+            resultId
+        );
+
+
+    if (
+        answer.toLowerCase()
+        ===
+        expected.toLowerCase()
+    ) {
+
+        result.innerHTML = `
+
+        <div class="result success">
+
+✓ RESPOSTA CORRETA
+
+Você identificou corretamente
+o indicador.
+
++${reward} XP
+
+        </div>
+
+        `;
+
+
+        addXP(reward);
+
+
+    } else {
+
+        result.innerHTML = `
+
+        <div class="result error">
+
+✗ RESPOSTA INCORRETA
+
+Analise novamente os dados.
+
+        </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   SQL ENGINE
+========================================================= */
+
+function executeSQL() {
+
+    const query =
+        document
+            .getElementById(
+                "sqlQuery"
+            )
+            .value
+            .toLowerCase()
+            .replace(/\s+/g," ");
+
+
+    const valid =
+
+        query.includes(
+            "select"
+        )
+
+        &&
+
+        query.includes(
+            "from security_events"
+        )
+
+        &&
+
+        query.includes(
+            "where"
+        )
+
+        &&
+
+        query.includes(
+            "severity"
+        )
+
+        &&
+
+        (
+            query.includes(
+                ">= 7"
+            )
+
+            ||
+
+            query.includes(
+                ">=7"
+            )
+
+        );
+
+
+    const result =
+        document.getElementById(
+            "sqlResult"
+        );
+
+
+    if (valid) {
+
+        result.innerHTML = `
+
+        <div class="result success">
+
+✓ QUERY EXECUTADA
+
+Resultado:
+
+ID | USER | EVENT | SEVERITY
+
+2 | root | login_success | 8
+
+3 | bob  | port_scan    | 7
+
+
++100 XP
+
+        </div>
+
+        `;
+
+
+        addXP(100);
+
+
+    } else {
+
+        result.innerHTML = `
+
+        <div class="result error">
+
+✗ QUERY INCORRETA
+
+Dica:
+
+SELECT *
+
+FROM security_events
+
+WHERE severity >= 7
+
+        </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   LINUX TERMINAL
+========================================================= */
+
+function runCommand() {
+
+    const input =
+        document.getElementById(
+            "command"
+        );
+
+
+    const terminal =
+        document.getElementById(
+            "terminal"
+        );
+
+
+    const command =
+        input.value.trim();
+
+
+    if (!command) {
+
+        return;
+
+    }
+
+
+    const commands = {
+
+
+        "help":
+
+`Comandos disponíveis:
+
+pwd
+whoami
+ls
+ls -la
+ip
+ps
+cat notes.txt
+clear`,
+
+
+
+        "pwd":
+
+`/home/operator
+
+Explicação:
+Mostra o diretório atual.`,
+
+
+
+        "whoami":
+
+`operator
+
+Explicação:
+Mostra o usuário atual.`,
+
+
+
+        "ls":
+
+`logs
+scripts
+notes.txt
+
+Explicação:
+Lista os arquivos e diretórios.`,
+
+
+
+        "ls -la":
+
+`drwxr-xr-x logs
+drwxr-xr-x scripts
+-rw-r--r-- notes.txt
+
+Explicação:
+Lista arquivos com detalhes e permissões.`,
+
+
+
+        "ip":
+
+`eth0
+
+IP:
+10.10.20.15/24
+
+lo
+
+127.0.0.1/8
+
+Explicação:
+Mostra interfaces e endereços de rede.`,
+
+
+
+        "ps":
+
+`PID     COMMAND
+
+101     sshd
+221     nginx
+404     analyst
+
+Explicação:
+Lista processos em execução.`,
+
+
+
+        "cat notes.txt":
+
+`IOC: 185.22.14.9
+
+Priority: HIGH
+
+Explicação:
+cat mostra o conteúdo de arquivos.`
+
+    };
+
+
+    if (command === "clear") {
+
+        terminal.innerHTML = `
+
+CyberLab Linux Sandbox v1.0
+
+Sistema inicializado.
+
+<span class="prompt">
+operator@cyberlab:~$
+</span>
+
+`;
+
+        input.value = "";
+
+        return;
+
+    }
+
+
+    const output =
+        commands[command]
+
+        ||
+
+        `bash: ${command}: comando não encontrado.
+
+Digite "help".`;
+
+
+    terminal.innerHTML += `
+
+<span class="prompt">
+operator@cyberlab:~$
+</span>
+${command}
+
+${output}
+
+<span class="prompt">
+operator@cyberlab:~$
+</span>
+`;
+
+
+    terminal.scrollTop =
+        terminal.scrollHeight;
+
+
+    input.value = "";
+
+}
+
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document
+    .getElementById("search")
+    .addEventListener(
+        "input",
+        function() {
+
+            const query =
+                this.value
+                    .toLowerCase()
+                    .trim();
+
+
+            if (!query) {
+
+                return;
+
+            }
+
+
+            const aliases = {
+
+                "dashboard":
+                    "dashboard",
+
+                "siem":
+                    "soc",
+
+                "soc":
+                    "soc",
+
+                "splunk":
+                    "splunk",
+
+                "wazuh":
+                    "wazuh",
+
+                "wireshark":
+                    "wireshark",
+
+                "linux":
+                    "linux",
+
+                "terminal":
+                    "linux",
+
+                "sql":
+                    "sql",
+
+                "devops":
+                    "devops"
+
+            };
+
+
+            for (
+                const key in aliases
+            ) {
+
+                if (
+                    key.includes(query)
+                ) {
+
+                    openPage(
+                        aliases[key]
+                    );
+
+                    break;
+
+                }
+
+            }
+
+        }
+    );
+
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+document
+    .querySelectorAll(".nav-btn")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                openPage(
+                    this.dataset.page
+                );
+
+            }
+        );
+
+    });
+
+
+
+/* =========================================================
+   START
+========================================================= */
+
+openPage(
+    "dashboard"
+);
+
+</script>
+
+</body>
+</html>
